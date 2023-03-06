@@ -1,13 +1,21 @@
 'use strict';
+const listenPort = 8000;
+const hostname = 'etherpad.treepadcloud.com'
+const privateKeyPath = `/home/keys/treepadcloud.com.key`;
+const fullchainPath = `/home/keys/treepadcloud.com.pem`;
 
 //Loading dependencies & initializing express
+const fs = require('fs');
 var os = require('os');
 var express = require('express');
 var app = express();
 var http = require('http');
+const https = require('https');
 //For signalling in WebRTC
 var socketIO = require('socket.io');
 
+const privateCert = fs.readFileSync(privateKeyPath, 'utf8');
+const publicCert = fs.readFileSync(fullchainPath, 'utf8');
 
 app.use(express.static('public'))
 
@@ -15,7 +23,13 @@ app.get("/", function(req, res){
 	res.render("index.ejs");
 });
 
-var server = http.createServer(app);
+//var server = http.createServer(app);
+const server = https.createServer({
+    key: privateCert,
+    cert: publicCert,
+  }, app);
+  
+
 
 server.listen(process.env.PORT || 8000);
 

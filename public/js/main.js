@@ -1,5 +1,17 @@
 'use strict';
 
+/*
+ * Group Chat
+ * https://www.dmcinfo.com/latest-thinking/blog/id/9852/multi-user-video-chat-with-webrtc
+ * 
+ * https://medium.com/swlh/manage-dynamic-multi-peer-connections-in-webrtc-3ff4e10f75b7
+ * https://bloggeek.me/webrtcglossary/sfu/
+ * https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/RTCPeerConnection
+ * https://web.dev/webrtc-basics/
+ * https://github.com/webrtc/samples/tree/gh-pages/src/content/peerconnection/multiple/js
+ * https://webrtc.org/getting-started/media-devices
+ */
+
 //Defining some global utility variables
 var isChannelReady = false;
 var isInitiator = false;
