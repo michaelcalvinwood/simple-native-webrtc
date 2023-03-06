@@ -30,6 +30,7 @@ io.sockets.on('connection', function(socket) {
 	  var array = ['Message from server:'];
 	  array.push.apply(array, arguments);
 	  socket.emit('log', array);
+      console.log(arguments);
 	}
   
     
@@ -44,7 +45,8 @@ io.sockets.on('connection', function(socket) {
 	  log('Received request to create or join room ' + room);
   
 	  var clientsInRoom = io.sockets.adapter.rooms[room];
-	  var numClients = clientsInRoom ? Object.keys(clientsInRoom.sockets).length : 0;
+      console.log('clientsInRoom', clientsInRoom, io.sockets.adapter.rooms[room]);
+	  var numClients = clientsInRoom ? Object.keys(io.sockets.adapter.rooms[room]).length : 0;
 	  log('Room ' + room + ' now has ' + numClients + ' client(s)');
   
 	  if (numClients === 0) {
